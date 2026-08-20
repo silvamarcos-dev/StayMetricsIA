@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-# 1. IMPORTAÇÕES CORRETAS ALINHADAS COM A SUA ESTRUTURA DE PASTAS REAL
+# 1. IMPORTAÇÕES AJUSTADAS COM O PREFIXO DO AMBIENTE RENDER
 try:
-    from database.base import Base
-    from database.connection import engine
+    from app.database.base import Base
+    from app.database.connection import engine
     
     # Executa a criação física das tabelas no PostgreSQL da Render
     Base.metadata.create_all(bind=engine)
