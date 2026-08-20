@@ -1,22 +1,16 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-# 1. IMPORTA O ENGINE DIRETAMENTE DO SEU ARQUIVO DATABASE.PY
-from app.database import engine
-
-# 2. PROCURA PELA CLASSE BASE ONDE OS SEUS MODELOS ESTÃO DEFINIDOS
-Base = None
+# 1. IMPORTAÇÕES CORRETAS ALINHADAS COM A SUA ESTRUTURA DE PASTAS REAL
 try:
-    from app.models import Base
-except (ModuleNotFoundError, ImportError):
-    try:
-        from app.models.base import Base
-    except (ModuleNotFoundError, ImportError):
-        try:
-            # Caso esteja solto dentro de alguma estrutura comum
-            from app.database.connection import Base
-        except (ModuleNotFoundError, ImportError):
-            print("⚠️ A classe 'Base' dos modelos não foi encontrada automaticamente.")
+    from database.base import Base
+    from database.connection import engine
+    
+    # Executa a criação física das tabelas no PostgreSQL da Render
+    Base.metadata.create_all(bind=engine)
+    print("✅ Tabelas sincronizadas com sucesso no banco de dados!")
+except Exception as e:
+    print(f"⚠️ Erro ao importar ou sincronizar o banco de dados: {e}")
 
 from app.routes.google_calendar import router as google_calendar_router
 from app.routes.chat import router as chat_router
@@ -59,14 +53,6 @@ from app.routes.relatorios import (
 from app.controllers.configuracao_controller import (
     router as configuracao_router
 )
-
-# 3. SE O BASE FOR LOCALIZADO, CONECTA AO ENGINE E CRIA AS TABELAS NO POSTGRESQL
-if Base is not None:
-    try:
-        Base.metadata.create_all(bind=engine)
-        print("✅ Tabelas sincronizadas com sucesso no banco de dados!")
-    except Exception as e:
-        print(f"⚠️ Erro ao executar o create_all: {e}")
 
 app = FastAPI(
     title="STAY METRICS IA API",
