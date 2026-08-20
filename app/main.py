@@ -1,5 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+# 1. IMPORTA O BANCO E FORÇA O REGISTRO DE TODOS OS MODELOS DO PROJETO
+from app.session import Base, engine 
+import app.models
+
 from app.routes.google_calendar import router as google_calendar_router
 from app.routes.chat import router as chat_router
 
@@ -41,6 +45,9 @@ from app.routes.relatorios import (
 from app.controllers.configuracao_controller import (
     router as configuracao_router
 )
+
+# 2. EXECUTA A CRIAÇÃO DE TODAS AS TABELAS NO BANCO DA RENDER
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="STAY METRICS IA API",
