@@ -1,20 +1,20 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-# 1. TENTAR IMPORTAR O BANCO DE DADOS DOS ARQUIVOS MAIS PROVÁVEIS DO SEU PROJETO
+# 1. TENTAR IMPORTAR O BANCO DE DADOS TRATANDO ARQUIVO E ERROS DE NOME INTERNO
 Base = None
 engine = None
 
 try:
     from app.database import Base, engine
-except ModuleNotFoundError:
+except (ModuleNotFoundError, ImportError):
     try:
         from app.config import Base, engine
-    except ModuleNotFoundError:
+    except (ModuleNotFoundError, ImportError):
         try:
             from app.db import Base, engine
-        except ModuleNotFoundError:
-            # Se não achar nada, avisa no log mas deixa a API iniciar
+        except (ModuleNotFoundError, ImportError):
+            # Se não achar nada, avisa no log mas deixa a API iniciar normalmente
             print("⚠️ Arquivo de banco (Base/engine) não foi encontrado automaticamente.")
 
 from app.routes.google_calendar import router as google_calendar_router
