@@ -1,21 +1,22 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-# 1. TENTAR IMPORTAR O BANCO DE DADOS TRATANDO ARQUIVO E ERROS DE NOME INTERNO
-Base = None
-engine = None
+# 1. IMPORTA O ENGINE DIRETAMENTE DO SEU ARQUIVO DATABASE.PY
+from app.database import engine
 
+# 2. PROCURA PELA CLASSE BASE ONDE OS SEUS MODELOS ESTÃO DEFINIDOS
+Base = None
 try:
-    from app.database import Base, engine
+    from app.models import Base
 except (ModuleNotFoundError, ImportError):
     try:
-        from app.config import Base, engine
+        from app.models.base import Base
     except (ModuleNotFoundError, ImportError):
         try:
-            from app.db import Base, engine
+            # Caso esteja solto dentro de alguma estrutura comum
+            from app.database import Base
         except (ModuleNotFoundError, ImportError):
-            # Se não achar nada, avisa no log mas deixa a API iniciar normalmente
-            print("⚠️ Arquivo de banco (Base/engine) não foi encontrado automaticamente.")
+            print("⚠️ A classe 'Base' dos modelos não foi encontrada automaticamente.")
 
 from app.routes.google_calendar import router as google_calendar_router
 from app.routes.chat import router as chat_router
@@ -59,8 +60,8 @@ from app.controllers.configuracao_controller import (
     router as configuracao_router
 )
 
-# 2. SE O ARQUIVO CORRETO FOR ENCONTRADO, CRIA AS TABELAS NO POSTGRESQL
-if Base is not None and engine is not None:
+# 3. SE O BASE FOR LOCALIZADO, CONECTA AO ENGINE E CRIA AS TABELAS NO POSTGRESQL
+if Base is not None:
     try:
         Base.metadata.create_all(bind=engine)
         print("✅ Tabelas sincronizadas com sucesso no banco de dados!")
