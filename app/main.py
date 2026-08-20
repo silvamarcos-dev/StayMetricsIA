@@ -1,11 +1,22 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
-# 1. IMPORTAÇÕES AJUSTADAS COM O PREFIXO DO AMBIENTE RENDER
+# 1. LEITURA E AJUSTE DA URL DO BANCO DA RENDER
+DATABASE_URL = os.getenv("DATABASE_URL")
+if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
 try:
     from app.database.base import Base
     from app.database.connection import engine
+    from sqlalchemy import create_engine
     
+    # SE TENTAR USAR LOCALHOST NA RENDER, SUBSTITUI EM TEMPO DE EXECUÇÃO
+    if DATABASE_URL and "localhost" in str(engine.url):
+        print("🔌 Substituindo localhost pela URL de conexão da Render...")
+        engine = create_engine(DATABASE_URL)
+
     # Executa a criação física das tabelas no PostgreSQL da Render
     Base.metadata.create_all(bind=engine)
     print("✅ Tabelas sincronizadas com sucesso no banco de dados!")
