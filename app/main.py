@@ -14,7 +14,7 @@ except (ModuleNotFoundError, ImportError):
     except (ModuleNotFoundError, ImportError):
         try:
             # Caso esteja solto dentro de alguma estrutura comum
-            from app.database import Base
+            from app.connection import Base
         except (ModuleNotFoundError, ImportError):
             print("⚠️ A classe 'Base' dos modelos não foi encontrada automaticamente.")
 
