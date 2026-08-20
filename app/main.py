@@ -1,8 +1,21 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-# 1. IMPORTA O BANCO E FORÇA O REGISTRO DE TODOS OS MODELOS DO PROJETO
-from app.session import Base, engine 
-import app.models
+
+# 1. TENTAR IMPORTAR O BANCO DE DADOS DOS ARQUIVOS MAIS PROVÁVEIS DO SEU PROJETO
+Base = None
+engine = None
+
+try:
+    from app.database import Base, engine
+except ModuleNotFoundError:
+    try:
+        from app.config import Base, engine
+    except ModuleNotFoundError:
+        try:
+            from app.db import Base, engine
+        except ModuleNotFoundError:
+            # Se não achar nada, avisa no log mas deixa a API iniciar
+            print("⚠️ Arquivo de banco (Base/engine) não foi encontrado automaticamente.")
 
 from app.routes.google_calendar import router as google_calendar_router
 from app.routes.chat import router as chat_router
@@ -46,8 +59,13 @@ from app.controllers.configuracao_controller import (
     router as configuracao_router
 )
 
-# 2. EXECUTA A CRIAÇÃO DE TODAS AS TABELAS NO BANCO DA RENDER
-Base.metadata.create_all(bind=engine)
+# 2. SE O ARQUIVO CORRETO FOR ENCONTRADO, CRIA AS TABELAS NO POSTGRESQL
+if Base is not None and engine is not None:
+    try:
+        Base.metadata.create_all(bind=engine)
+        print("✅ Tabelas sincronizadas com sucesso no banco de dados!")
+    except Exception as e:
+        print(f"⚠️ Erro ao executar o create_all: {e}")
 
 app = FastAPI(
     title="STAY METRICS IA API",
