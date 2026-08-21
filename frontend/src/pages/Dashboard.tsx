@@ -104,16 +104,16 @@ function Dashboard() {
 
   if (carregando) {
     return (
-      <div className="min-h-full bg-[#080a0f] p-6 text-white lg:p-8">
+      <div className="min-h-full bg-[#F5F6FA] p-6 lg:p-8">
 
         <div className="mx-auto max-w-[1600px] space-y-8">
 
           <div className="space-y-3">
-            <div className="h-4 w-24 animate-pulse rounded bg-zinc-800" />
+            <div className="h-4 w-24 animate-pulse rounded bg-zinc-200" />
 
-            <div className="h-9 w-52 animate-pulse rounded-lg bg-zinc-800" />
+            <div className="h-9 w-52 animate-pulse rounded-lg bg-zinc-200" />
 
-            <div className="h-4 w-80 animate-pulse rounded bg-zinc-900" />
+            <div className="h-4 w-80 animate-pulse rounded bg-zinc-200/70" />
           </div>
 
 
@@ -122,7 +122,7 @@ function Dashboard() {
             {[1, 2, 3, 4].map((item) => (
               <div
                 key={item}
-                className="h-40 animate-pulse rounded-2xl border border-zinc-800 bg-[#10131a]"
+                className="h-28 animate-pulse rounded-full bg-zinc-200"
               />
             ))}
 
@@ -131,9 +131,9 @@ function Dashboard() {
 
           <div className="grid grid-cols-1 gap-5 xl:grid-cols-3">
 
-            <div className="h-80 animate-pulse rounded-2xl border border-zinc-800 bg-[#10131a] xl:col-span-2" />
+            <div className="h-80 animate-pulse rounded-3xl bg-white shadow-sm xl:col-span-2" />
 
-            <div className="h-80 animate-pulse rounded-2xl border border-zinc-800 bg-[#10131a]" />
+            <div className="h-80 animate-pulse rounded-3xl bg-white shadow-sm" />
 
           </div>
 
@@ -152,17 +152,17 @@ function Dashboard() {
 
   if (erro) {
     return (
-      <div className="min-h-full bg-[#080a0f] p-6 text-white lg:p-8">
+      <div className="min-h-full bg-[#F5F6FA] p-6 lg:p-8">
 
         <div className="mx-auto max-w-[1600px]">
 
           <div className="mb-8">
 
-            <p className="text-sm font-medium text-blue-400">
+            <p className="text-sm font-semibold text-violet-500">
               Visão geral
             </p>
 
-            <h1 className="mt-1 text-3xl font-bold tracking-tight">
+            <h1 className="mt-1 text-3xl font-bold tracking-tight text-[#1F2233]">
               Dashboard
             </h1>
 
@@ -173,25 +173,25 @@ function Dashboard() {
           </div>
 
 
-          <div className="rounded-2xl border border-red-900/50 bg-red-950/20 p-6">
+          <div className="rounded-3xl border border-red-100 bg-red-50 p-6 shadow-sm">
 
             <div className="flex items-start gap-4">
 
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-red-900/50 bg-red-950/40 text-red-400">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-red-100 text-red-500">
                 !
               </div>
 
               <div>
 
-                <p className="font-semibold text-red-400">
+                <p className="font-semibold text-red-500">
                   Não foi possível carregar o dashboard
                 </p>
 
-                <p className="mt-1 text-sm text-red-300/70">
+                <p className="mt-1 text-sm text-red-400">
                   {erro}
                 </p>
 
-                <p className="mt-3 text-xs text-zinc-500">
+                <p className="mt-3 text-xs text-zinc-400">
                   Verifique se o backend está executando.
                 </p>
 
@@ -269,6 +269,9 @@ function Dashboard() {
       dados.rentabilidade.rentabilidade_media
     ) || 0;
 
+  const maiorBarraFinanceira =
+    Math.max(faturamento, custos, receitaLiquida, 1);
+
 
   /*
    * ============================================================
@@ -277,7 +280,7 @@ function Dashboard() {
    */
 
   return (
-    <div className="min-h-full bg-[#080a0f] p-6 text-white lg:p-8">
+    <div className="min-h-full bg-[#F5F6FA] p-6 lg:p-8">
 
       <div className="mx-auto max-w-[1600px] space-y-8">
 
@@ -292,15 +295,15 @@ function Dashboard() {
 
             <div className="flex items-center gap-2">
 
-              <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+              <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />
 
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-400">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-500">
                 Visão geral
               </p>
 
             </div>
 
-            <h1 className="mt-2 text-3xl font-bold tracking-tight text-white">
+            <h1 className="mt-2 text-3xl font-bold tracking-tight text-[#1F2233]">
               Dashboard
             </h1>
 
@@ -311,17 +314,17 @@ function Dashboard() {
           </div>
 
 
-          <div className="flex w-fit items-center gap-2 rounded-full border border-zinc-800 bg-[#10131a] px-3.5 py-2">
+          <div className="flex w-fit items-center gap-2 rounded-full border border-zinc-200 bg-white px-3.5 py-2 shadow-sm">
 
             <span className="relative flex h-2 w-2">
 
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-50" />
 
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
 
             </span>
 
-            <span className="text-xs font-medium text-zinc-400">
+            <span className="text-xs font-medium text-zinc-500">
               API conectada
             </span>
 
@@ -331,48 +334,48 @@ function Dashboard() {
 
 
         {/* ======================================================
-            CARDS PRINCIPAIS
+            PÍLULAS DE INDICADORES
         ====================================================== */}
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
 
-          <CardIndicador
+          <PilulaIndicador
             titulo="Apartamentos"
             valor={String(totalApartamentos)}
             descricao={`${totalDisponiveis} disponíveis`}
             icone="⌂"
-            destaque="blue"
+            cor="violet"
           />
 
-          <CardIndicador
+          <PilulaIndicador
             titulo="Reservas"
             valor={String(totalReservas)}
-            descricao={`${totalOcupados} atualmente ocupados`}
+            descricao={`${totalOcupados} ocupados`}
             icone="✓"
-            destaque="violet"
+            cor="orange"
           />
 
-          <CardIndicador
-            titulo="Ocupação média"
+          <PilulaIndicador
+            titulo="Ocupação"
             valor={formatarPercentual(ocupacao)}
-            descricao="Desempenho dos imóveis"
+            descricao="Média dos imóveis"
             icone="%"
-            destaque="amber"
+            cor="blue"
           />
 
-          <CardIndicador
+          <PilulaIndicador
             titulo="Faturamento"
             valor={formatarMoeda(faturamento)}
             descricao="Receita bruta"
             icone="R$"
-            destaque="emerald"
+            cor="emerald"
           />
 
         </div>
 
 
         {/* ======================================================
-            FINANCEIRO + INDICADORES
+            FINANCEIRO + DISTRIBUIÇÃO
         ====================================================== */}
 
         <div className="grid grid-cols-1 gap-5 xl:grid-cols-3">
@@ -382,62 +385,72 @@ function Dashboard() {
               FINANCEIRO
           ==================================================== */}
 
-          <div className="overflow-hidden rounded-2xl border border-zinc-800 bg-[#10131a] xl:col-span-2">
+          <div className="rounded-3xl border border-zinc-100 bg-white p-6 shadow-sm xl:col-span-2">
 
-            <div className="flex items-center justify-between border-b border-zinc-800 px-6 py-5">
+            <div className="flex items-center justify-between">
 
               <div>
 
-                <h2 className="font-semibold text-white">
+                <h2 className="font-semibold text-[#1F2233]">
                   Desempenho financeiro
                 </h2>
 
-                <p className="mt-1 text-sm text-zinc-500">
-                  Resumo financeiro dos apartamentos.
+                <p className="mt-1 text-sm text-zinc-400">
+                  Resumo financeiro dos apartamentos
                 </p>
 
               </div>
 
-
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900 text-xs font-bold text-zinc-400">
-                R$
-              </div>
+              <span className="rounded-full bg-violet-50 px-3 py-1 text-xs font-semibold text-violet-500">
+                Este período
+              </span>
 
             </div>
 
 
-            <div className="grid grid-cols-1 gap-px bg-zinc-800 sm:grid-cols-3">
+            {/* Barras comparativas */}
+            <div className="mt-7 grid grid-cols-3 gap-5">
 
-              <MetricFinanceira
+              <BarraFinanceira
                 titulo="Receita bruta"
-                valor={formatarMoeda(faturamento)}
-                destaque
+                valor={faturamento}
+                maximo={maiorBarraFinanceira}
+                cor="bg-violet-500"
+                textoValor={formatarMoeda(faturamento)}
               />
 
-              <MetricFinanceira
+              <BarraFinanceira
                 titulo="Custos"
-                valor={formatarMoeda(custos)}
+                valor={custos}
+                maximo={maiorBarraFinanceira}
+                cor="bg-orange-400"
+                textoValor={formatarMoeda(custos)}
               />
 
-              <MetricFinanceira
+              <BarraFinanceira
                 titulo="Receita líquida"
-                valor={formatarMoeda(receitaLiquida)}
+                valor={receitaLiquida}
+                maximo={maiorBarraFinanceira}
+                cor="bg-emerald-500"
+                textoValor={formatarMoeda(receitaLiquida)}
               />
 
             </div>
 
 
-            <div className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2">
+            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
 
-              <IndicadorFinanceiro
+              <MiniIndicador
                 titulo="Rentabilidade média"
-                valor={formatarPercentual(rentabilidade)}
+                valor={rentabilidade}
+                cor="#8B5CF6"
                 descricao="Retorno médio dos imóveis"
               />
 
-              <IndicadorFinanceiro
+              <MiniIndicador
                 titulo="Ocupação média"
-                valor={formatarPercentual(ocupacao)}
+                valor={ocupacao}
+                cor="#3B82F6"
                 descricao="Taxa média de ocupação"
               />
 
@@ -447,52 +460,75 @@ function Dashboard() {
 
 
           {/* ====================================================
-              INDICADORES
+              DISTRIBUIÇÃO DE STATUS (donut)
           ==================================================== */}
 
-          <div className="rounded-2xl border border-zinc-800 bg-[#10131a]">
+          <div className="rounded-3xl border border-zinc-100 bg-white p-6 shadow-sm">
 
-            <div className="border-b border-zinc-800 px-6 py-5">
+            <h2 className="font-semibold text-[#1F2233]">
+              Status dos imóveis
+            </h2>
 
-              <h2 className="font-semibold text-white">
-                Indicadores
-              </h2>
+            <p className="mt-1 text-sm text-zinc-400">
+              Distribuição atual
+            </p>
 
-              <p className="mt-1 text-sm text-zinc-500">
-                Visão operacional
-              </p>
+
+            <div className="mt-6 flex justify-center">
+
+              <Donut
+                tamanho={168}
+                espessura={18}
+                total={totalApartamentos}
+                segmentos={[
+                  { valor: totalDisponiveis, cor: "#3B82F6" },
+                  { valor: totalReservas, cor: "#8B5CF6" },
+                  { valor: totalOcupados, cor: "#10B981" },
+                  { valor: totalManutencao, cor: "#F59E0B" },
+                ]}
+                centro={
+                  <>
+                    <span className="text-2xl font-bold text-[#1F2233]">
+                      {totalApartamentos}
+                    </span>
+                    <span className="text-xs text-zinc-400">
+                      imóveis
+                    </span>
+                  </>
+                }
+              />
 
             </div>
 
 
-            <div className="space-y-7 p-6">
+            <div className="mt-6 space-y-3">
 
-              <BarraProgresso
-                titulo="Ocupação"
-                valor={ocupacao}
-                descricao="Apartamentos ocupados"
+              <LegendaStatus
+                cor="#3B82F6"
+                titulo="Disponíveis"
+                valor={totalDisponiveis}
+                total={totalApartamentos}
               />
 
-              <BarraProgresso
-                titulo="Rentabilidade"
-                valor={rentabilidade}
-                descricao="Retorno médio"
+              <LegendaStatus
+                cor="#8B5CF6"
+                titulo="Reservados"
+                valor={totalReservas}
+                total={totalApartamentos}
               />
 
-              <BarraProgresso
-                titulo="Reservas"
-                valor={
-                  totalApartamentos > 0
-                    ? Math.min(
-                        (
-                          totalReservas /
-                          totalApartamentos
-                        ) * 100,
-                        100
-                      )
-                    : 0
-                }
-                descricao="Imóveis reservados"
+              <LegendaStatus
+                cor="#10B981"
+                titulo="Ocupados"
+                valor={totalOcupados}
+                total={totalApartamentos}
+              />
+
+              <LegendaStatus
+                cor="#F59E0B"
+                titulo="Manutenção"
+                valor={totalManutencao}
+                total={totalApartamentos}
               />
 
             </div>
@@ -503,80 +539,53 @@ function Dashboard() {
 
 
         {/* ======================================================
-            STATUS DOS APARTAMENTOS
+            CARTÕES DE PROGRESSO POR STATUS
         ====================================================== */}
 
-        <div className="overflow-hidden rounded-2xl border border-zinc-800 bg-[#10131a]">
+        <div>
 
-          <div className="border-b border-zinc-800 px-6 py-5">
+          <div className="mb-4 flex items-center justify-between">
 
-            <h2 className="font-semibold text-white">
-              Status dos apartamentos
-            </h2>
-
-            <p className="mt-1 text-sm text-zinc-500">
-              Distribuição atual dos imóveis cadastrados.
-            </p>
+            <div>
+              <h2 className="font-semibold text-[#1F2233]">
+                Status dos apartamentos
+              </h2>
+              <p className="mt-1 text-sm text-zinc-400">
+                Distribuição atual dos imóveis cadastrados
+              </p>
+            </div>
 
           </div>
 
 
-          <div className="grid grid-cols-2 divide-x divide-zinc-800 sm:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
 
-            <StatusApartamento
+            <CartaoProgresso
               titulo="Disponíveis"
               valor={totalDisponiveis}
-              percentual={
-                totalApartamentos > 0
-                  ? (
-                      totalDisponiveis /
-                      totalApartamentos
-                    ) * 100
-                  : 0
-              }
-              tipo="blue"
+              total={totalApartamentos}
+              cor="blue"
             />
 
-            <StatusApartamento
+            <CartaoProgresso
               titulo="Reservados"
               valor={totalReservas}
-              percentual={
-                totalApartamentos > 0
-                  ? (
-                      totalReservas /
-                      totalApartamentos
-                    ) * 100
-                  : 0
-              }
-              tipo="violet"
+              total={totalApartamentos}
+              cor="violet"
             />
 
-            <StatusApartamento
+            <CartaoProgresso
               titulo="Ocupados"
               valor={totalOcupados}
-              percentual={
-                totalApartamentos > 0
-                  ? (
-                      totalOcupados /
-                      totalApartamentos
-                    ) * 100
-                  : 0
-              }
-              tipo="emerald"
+              total={totalApartamentos}
+              cor="emerald"
             />
 
-            <StatusApartamento
+            <CartaoProgresso
               titulo="Manutenção"
               valor={totalManutencao}
-              percentual={
-                totalApartamentos > 0
-                  ? (
-                      totalManutencao /
-                      totalApartamentos
-                    ) * 100
-                  : 0
-              }
-              tipo="amber"
+              total={totalApartamentos}
+              cor="amber"
             />
 
           </div>
@@ -588,7 +597,7 @@ function Dashboard() {
             RODAPÉ
         ====================================================== */}
 
-        <div className="flex flex-col justify-between gap-2 border-t border-zinc-900 pt-5 text-xs text-zinc-600 sm:flex-row">
+        <div className="flex flex-col justify-between gap-2 border-t border-zinc-200 pt-5 text-xs text-zinc-400 sm:flex-row">
 
           <span>
             Stay Metrics IA - Sistema de gestão de apartamentos
@@ -608,266 +617,321 @@ function Dashboard() {
 
 
 /* =================================================================
-   CARD INDICADOR
+   PÍLULA DE INDICADOR
 ================================================================= */
 
-interface CardIndicadorProps {
+interface PilulaIndicadorProps {
   titulo: string;
   valor: string;
   descricao: string;
   icone: string;
-  destaque: "blue" | "violet" | "amber" | "emerald";
+  cor: "violet" | "orange" | "blue" | "emerald";
 }
 
-function CardIndicador({
+function PilulaIndicador({
   titulo,
   valor,
   descricao,
   icone,
-  destaque,
-}: CardIndicadorProps) {
+  cor,
+}: PilulaIndicadorProps) {
 
   const estilos = {
 
-    blue: {
-      fundo:
-        "bg-blue-500/10 border-blue-500/10",
-      texto:
-        "text-blue-400",
-      brilho:
-        "group-hover:border-blue-500/30",
-    },
-
     violet: {
-      fundo:
-        "bg-violet-500/10 border-violet-500/10",
-      texto:
-        "text-violet-400",
-      brilho:
-        "group-hover:border-violet-500/30",
+      fundo: "bg-violet-500",
+      icone: "bg-white/20 text-white",
     },
 
-    amber: {
-      fundo:
-        "bg-amber-500/10 border-amber-500/10",
-      texto:
-        "text-amber-400",
-      brilho:
-        "group-hover:border-amber-500/30",
+    orange: {
+      fundo: "bg-orange-400",
+      icone: "bg-white/20 text-white",
+    },
+
+    blue: {
+      fundo: "bg-blue-500",
+      icone: "bg-white/20 text-white",
     },
 
     emerald: {
-      fundo:
-        "bg-emerald-500/10 border-emerald-500/10",
-      texto:
-        "text-emerald-400",
-      brilho:
-        "group-hover:border-emerald-500/30",
+      fundo: "bg-emerald-500",
+      icone: "bg-white/20 text-white",
     },
 
   };
 
-  const estilo =
-    estilos[destaque];
+  const estilo = estilos[cor];
 
   return (
     <div
       className={`
-        group
-        rounded-2xl
-        border
-        border-zinc-800
-        bg-[#10131a]
-        p-6
-        transition-all
+        flex
+        items-center
+        gap-4
+        rounded-3xl
+        ${estilo.fundo}
+        p-5
+        text-white
+        shadow-sm
+        transition-transform
         duration-200
         hover:-translate-y-0.5
-        hover:bg-[#12161e]
-        ${estilo.brilho}
       `}
     >
 
-      <div className="flex items-start justify-between">
+      <div
+        className={`
+          flex
+          h-12
+          w-12
+          shrink-0
+          items-center
+          justify-center
+          rounded-2xl
+          text-sm
+          font-bold
+          ${estilo.icone}
+        `}
+      >
+        {icone}
+      </div>
 
-        <div>
+      <div className="min-w-0">
 
-          <p className="text-sm font-medium text-zinc-500">
-            {titulo}
-          </p>
+        <p className="truncate text-xs font-medium uppercase tracking-wide text-white/70">
+          {titulo}
+        </p>
 
-          <p className="mt-3 text-3xl font-bold tracking-tight text-white">
-            {valor}
-          </p>
+        <p className="mt-0.5 text-2xl font-bold tracking-tight">
+          {valor}
+        </p>
 
-        </div>
-
-
-        <div
-          className={`
-            flex
-            h-11
-            w-11
-            items-center
-            justify-center
-            rounded-xl
-            border
-            text-xs
-            font-bold
-            ${estilo.fundo}
-            ${estilo.texto}
-          `}
-        >
-          {icone}
-        </div>
+        <p className="truncate text-xs text-white/70">
+          {descricao}
+        </p>
 
       </div>
 
-
-      <p className="mt-5 text-xs text-zinc-600">
-        {descricao}
-      </p>
-
     </div>
   );
 }
 
 
 /* =================================================================
-   MÉTRICA FINANCEIRA
+   BARRA FINANCEIRA (comparativo vertical)
 ================================================================= */
 
-interface MetricFinanceiraProps {
-  titulo: string;
-  valor: string;
-  destaque?: boolean;
-}
-
-function MetricFinanceira({
-  titulo,
-  valor,
-  destaque = false,
-}: MetricFinanceiraProps) {
-
-  return (
-    <div className="bg-[#10131a] p-5">
-
-      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-zinc-600">
-        {titulo}
-      </p>
-
-      <p
-        className={`
-          mt-2
-          text-xl
-          font-bold
-          tracking-tight
-          ${
-            destaque
-              ? "text-blue-400"
-              : "text-white"
-          }
-        `}
-      >
-        {valor}
-      </p>
-
-    </div>
-  );
-}
-
-
-/* =================================================================
-   INDICADOR FINANCEIRO
-================================================================= */
-
-interface IndicadorFinanceiroProps {
-  titulo: string;
-  valor: string;
-  descricao: string;
-}
-
-function IndicadorFinanceiro({
-  titulo,
-  valor,
-  descricao,
-}: IndicadorFinanceiroProps) {
-
-  return (
-    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4">
-
-      <p className="text-sm font-medium text-zinc-400">
-        {titulo}
-      </p>
-
-      <p className="mt-2 text-2xl font-bold tracking-tight text-white">
-        {valor}
-      </p>
-
-      <p className="mt-1 text-xs text-zinc-600">
-        {descricao}
-      </p>
-
-    </div>
-  );
-}
-
-
-/* =================================================================
-   BARRA DE PROGRESSO
-================================================================= */
-
-interface BarraProgressoProps {
+interface BarraFinanceiraProps {
   titulo: string;
   valor: number;
-  descricao: string;
+  maximo: number;
+  cor: string;
+  textoValor: string;
 }
 
-function BarraProgresso({
+function BarraFinanceira({
   titulo,
   valor,
-  descricao,
-}: BarraProgressoProps) {
+  maximo,
+  cor,
+  textoValor,
+}: BarraFinanceiraProps) {
 
-  const percentual = Math.max(
-    0,
-    Math.min(
-      Number(valor) || 0,
-      100
-    )
+  const altura = Math.max(
+    6,
+    Math.min((valor / maximo) * 100, 100)
   );
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
 
-      <div className="flex items-end justify-between gap-4">
+      <div className="flex h-32 w-full items-end justify-center rounded-2xl bg-zinc-50 p-2">
 
-        <div>
+        <div
+          className={`w-8 rounded-full ${cor} transition-all duration-700`}
+          style={{ height: `${altura}%` }}
+        />
 
-          <p className="text-sm font-medium text-zinc-300">
-            {titulo}
-          </p>
+      </div>
 
-          <p className="mt-0.5 text-xs text-zinc-600">
-            {descricao}
-          </p>
+      <p className="mt-3 text-sm font-bold text-[#1F2233]">
+        {textoValor}
+      </p>
 
-        </div>
+      <p className="text-xs text-zinc-400">
+        {titulo}
+      </p>
+
+    </div>
+  );
+}
 
 
-        <span className="text-sm font-bold text-white">
-          {percentual.toFixed(1)}%
+/* =================================================================
+   MINI INDICADOR (com gauge circular)
+================================================================= */
+
+interface MiniIndicadorProps {
+  titulo: string;
+  valor: number;
+  cor: string;
+  descricao: string;
+}
+
+function MiniIndicador({
+  titulo,
+  valor,
+  cor,
+  descricao,
+}: MiniIndicadorProps) {
+
+  const percentual = Math.max(0, Math.min(Number(valor) || 0, 100));
+
+  return (
+    <div className="flex items-center gap-4 rounded-2xl bg-zinc-50 p-4">
+
+      <Donut
+        tamanho={56}
+        espessura={7}
+        total={100}
+        segmentos={[{ valor: percentual, cor }]}
+        corFundo="#E4E4E7"
+        centro={
+          <span className="text-[11px] font-bold text-[#1F2233]">
+            {percentual.toFixed(0)}%
+          </span>
+        }
+      />
+
+      <div className="min-w-0">
+
+        <p className="text-sm font-semibold text-[#1F2233]">
+          {titulo}
+        </p>
+
+        <p className="truncate text-xs text-zinc-400">
+          {descricao}
+        </p>
+
+      </div>
+
+    </div>
+  );
+}
+
+
+/* =================================================================
+   LEGENDA DE STATUS
+================================================================= */
+
+interface LegendaStatusProps {
+  cor: string;
+  titulo: string;
+  valor: number;
+  total: number;
+}
+
+function LegendaStatus({
+  cor,
+  titulo,
+  valor,
+  total,
+}: LegendaStatusProps) {
+
+  const percentual = total > 0 ? (valor / total) * 100 : 0;
+
+  return (
+    <div className="flex items-center justify-between">
+
+      <div className="flex items-center gap-2.5">
+
+        <span
+          className="h-2.5 w-2.5 rounded-full"
+          style={{ backgroundColor: cor }}
+        />
+
+        <span className="text-sm text-zinc-500">
+          {titulo}
         </span>
 
       </div>
 
+      <div className="flex items-center gap-2">
 
-      <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-zinc-800">
+        <span className="text-sm font-semibold text-[#1F2233]">
+          {valor}
+        </span>
+
+        <span className="text-xs text-zinc-400">
+          ({percentual.toFixed(0)}%)
+        </span>
+
+      </div>
+
+    </div>
+  );
+}
+
+
+/* =================================================================
+   CARTÃO DE PROGRESSO
+================================================================= */
+
+interface CartaoProgressoProps {
+  titulo: string;
+  valor: number;
+  total: number;
+  cor: "blue" | "violet" | "emerald" | "amber";
+}
+
+function CartaoProgresso({
+  titulo,
+  valor,
+  total,
+  cor,
+}: CartaoProgressoProps) {
+
+  const percentual = total > 0 ? (valor / total) * 100 : 0;
+
+  const estilos = {
+    blue: { texto: "text-blue-500", barra: "bg-blue-500", chip: "bg-blue-50" },
+    violet: { texto: "text-violet-500", barra: "bg-violet-500", chip: "bg-violet-50" },
+    emerald: { texto: "text-emerald-500", barra: "bg-emerald-500", chip: "bg-emerald-50" },
+    amber: { texto: "text-amber-500", barra: "bg-amber-500", chip: "bg-amber-50" },
+  };
+
+  const estilo = estilos[cor];
+
+  return (
+    <div className="rounded-3xl border border-zinc-100 bg-white p-5 shadow-sm">
+
+      <div className="flex items-center justify-between">
+
+        <span
+          className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${estilo.chip} ${estilo.texto}`}
+        >
+          {titulo}
+        </span>
+
+        <span className={`text-sm font-bold ${estilo.texto}`}>
+          {percentual.toFixed(0)}%
+        </span>
+
+      </div>
+
+      <p className="mt-4 text-2xl font-bold tracking-tight text-[#1F2233]">
+        {valor}
+      </p>
+
+      <p className="text-xs text-zinc-400">
+        de {total} apartamentos
+      </p>
+
+      <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-zinc-100">
 
         <div
-          className="h-full rounded-full bg-blue-500 transition-all duration-700"
-          style={{
-            width: `${percentual}%`,
-          }}
+          className={`h-full rounded-full ${estilo.barra} transition-all duration-700`}
+          style={{ width: `${percentual}%` }}
         />
 
       </div>
@@ -878,78 +942,90 @@ function BarraProgresso({
 
 
 /* =================================================================
-   STATUS DOS APARTAMENTOS
+   DONUT (SVG genérico, aceita 1+ segmentos)
 ================================================================= */
 
-interface StatusApartamentoProps {
-  titulo: string;
+interface DonutSegmento {
   valor: number;
-  percentual: number;
-  tipo:
-    | "blue"
-    | "violet"
-    | "emerald"
-    | "amber";
+  cor: string;
 }
 
-function StatusApartamento({
-  titulo,
-  valor,
-  percentual,
-  tipo,
-}: StatusApartamentoProps) {
+interface DonutProps {
+  tamanho: number;
+  espessura: number;
+  total: number;
+  segmentos: DonutSegmento[];
+  corFundo?: string;
+  centro?: React.ReactNode;
+}
 
-  const estilos = {
+function Donut({
+  tamanho,
+  espessura,
+  total,
+  segmentos,
+  corFundo = "#F1F1F5",
+  centro,
+}: DonutProps) {
 
-    blue:
-      "bg-blue-500/10 text-blue-400 border-blue-500/10",
+  const raio = (tamanho - espessura) / 2;
+  const circunferencia = 2 * Math.PI * raio;
+  const somaTotal = total > 0 ? total : 1;
 
-    violet:
-      "bg-violet-500/10 text-violet-400 border-violet-500/10",
-
-    emerald:
-      "bg-emerald-500/10 text-emerald-400 border-emerald-500/10",
-
-    amber:
-      "bg-amber-500/10 text-amber-400 border-amber-500/10",
-
-  };
+  let acumulado = 0;
 
   return (
-    <div className="p-5 transition-colors hover:bg-zinc-900/40 sm:p-6">
+    <div
+      className="relative"
+      style={{ width: tamanho, height: tamanho }}
+    >
 
-      <div className="flex items-center gap-3">
+      <svg
+        width={tamanho}
+        height={tamanho}
+        viewBox={`0 0 ${tamanho} ${tamanho}`}
+        className="-rotate-90"
+      >
 
-        <div
-          className={`
-            flex
-            h-10
-            w-10
-            items-center
-            justify-center
-            rounded-xl
-            border
-            text-xs
-            font-bold
-            ${estilos[tipo]}
-          `}
-        >
-          {valor}
-        </div>
+        <circle
+          cx={tamanho / 2}
+          cy={tamanho / 2}
+          r={raio}
+          fill="none"
+          stroke={corFundo}
+          strokeWidth={espessura}
+        />
 
+        {segmentos.map((segmento, indice) => {
 
-        <div>
+          const fracao = Math.max(segmento.valor, 0) / somaTotal;
+          const comprimento = fracao * circunferencia;
+          const offset = circunferencia - (acumulado / somaTotal) * circunferencia;
 
-          <p className="text-sm font-medium text-zinc-300">
-            {titulo}
-          </p>
+          acumulado += segmento.valor;
 
-          <p className="mt-0.5 text-xs text-zinc-600">
-            {percentual.toFixed(1)}% do total
-          </p>
+          return (
+            <circle
+              key={indice}
+              cx={tamanho / 2}
+              cy={tamanho / 2}
+              r={raio}
+              fill="none"
+              stroke={segmento.cor}
+              strokeWidth={espessura}
+              strokeDasharray={`${comprimento} ${circunferencia}`}
+              strokeDashoffset={offset}
+              strokeLinecap="round"
+              className="transition-all duration-700"
+            />
+          );
 
-        </div>
+        })}
 
+      </svg>
+
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        {centro}
       </div>
 
     </div>
